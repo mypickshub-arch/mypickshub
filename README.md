@@ -1,2 +1,5 @@
-# mypickshub
-My Picks Store helps you find great products from trusted stores around the world. Pick your country, compare stores like Amazon, noon, eBay and more, then tap Buy now to check out safely on the store’s own website.
+# My Picks Store
+
+A price-comparison website that sends visitors to Amazon.ae, noon and eBay to buy.
+
+&copy; 2026 Parvez Ahmed Shaikh. All rights reserved. No part of this website may be copied or reused without written permission.
