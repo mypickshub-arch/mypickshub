@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Picks Store - Shop the world, one tap away</title>
+<meta name="description" content="My Picks Store: compare prices on electronics, gaming, fashion and home products from stores around the world, and buy from the store you trust.">
+<meta property="og:title" content="My Picks Store">
+<meta property="og:description" content="My Picks Store: compare prices on electronics, gaming, fashion and home products from stores around the world, and buy from the store you trust.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f2c230">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Picks">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<meta name="author" content="Parvez Ahmed Shaikh">
+<meta name="copyright" content="&copy; 2026 Parvez Ahmed Shaikh. All rights reserved.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f6f7f3;--surface:#fff;--ink:#14212b;--muted:#5d6b76;--line:#dfe3dc;--accent:#2447d6;--accent-ink:#fff;--good:#0b7a43;--tag:#f2c230;--tag-ink:#14212b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161c;--surface:#18212a;--ink:#eef1ee;--muted:#9aa8b3;--line:#2a3640;--accent:#7f9bff;--accent-ink:#10161c;--good:#5fd391}}
+:root[data-theme="dark"]{--bg:#10161c;--surface:#18212a;--ink:#eef1ee;--muted:#9aa8b3;--line:#2a3640;--accent:#7f9bff;--accent-ink:#10161c;--good:#5fd391}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;line-height:1.15;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+.bar{display:flex;align-items:center;gap:12px 16px;padding:14px 20px;flex-wrap:wrap}
+.logo{font:800 22px "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;white-space:nowrap}
+.logo span{background:var(--tag);color:var(--tag-ink);padding:0 8px;border-radius:6px;margin-right:4px}
+.search{flex:1 1 280px}
+input[type=search],select{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);font:inherit}
+.hero{padding:32px 0 8px}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:20px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:999px;font:500 14px "Instrument Sans",sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sort{width:auto;padding:9px 14px;font-size:16px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;padding-bottom:48px}
+.card{background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.pic{aspect-ratio:1/1;border-radius:16px;display:grid;place-items:center;font-size:72px;overflow:hidden;border:1px solid var(--line)}
+.pic img{width:100%;height:100%;object-fit:contain;background:#fff}
+.card h3{font-size:.98rem;font-weight:600;font-family:"Instrument Sans",sans-serif}
+.price{font-weight:600}
+.meta{color:var(--muted);font-size:.85rem}
+.low{display:inline-block;background:var(--ink);color:var(--bg);font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:6px;margin-bottom:2px}
+dialog{border:0;border-radius:20px;padding:0;max-width:760px;width:calc(100% - 24px);background:var(--surface);color:var(--ink);max-height:90vh;overflow:auto}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dl{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:24px}
+@media (max-width:640px){.dl{grid-template-columns:1fr}}
+.dl .pic{font-size:96px}
+.close{position:sticky;top:8px;display:block;margin:8px 8px -52px auto;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;z-index:2}
+.dl h2{font-size:1.5rem;font-weight:800}
+.offers{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.offer{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.offer b{font-size:1.02rem}
+.offer .p{font-weight:600}
+.best{color:var(--good);font-size:.78rem;font-weight:600}
+.buy{background:var(--accent);color:var(--accent-ink);text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:600;font-size:.92rem;white-space:nowrap}
+.empty{grid-column:1/-1;color:var(--muted);padding:24px 0}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:.85rem}
+.about{border-top:1px solid var(--line);padding:40px 0}.about h2{font-size:1.5rem;font-weight:800;margin-bottom:12px}.about p{max-width:68ch;color:var(--muted);margin:0 0 12px}
+.country{width:auto;max-width:220px;padding:10px 14px;font-size:16px}
+.badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;margin:18px 0 0;font-size:.9rem;color:var(--muted)}.badges li::before{content:"\2714";color:var(--good);font-weight:700;margin-right:6px}
+.trust{border-top:1px solid var(--line);padding:36px 0 8px}.trust h2{font-size:1.4rem;font-weight:800;margin-bottom:6px}.trust p{color:var(--muted);margin:0 0 14px}.storelist{display:flex;flex-wrap:wrap;gap:10px}.storelist a{border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:500;font-size:.92rem}.storelist a:hover{border-color:var(--accent)}
+.getapp{border-top:1px solid var(--line);padding:32px 0}.getapp .row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}.getapp h2{font-size:1.3rem;font-weight:800;margin:0}.getapp p{color:var(--muted);margin:4px 0 0;font-size:.95rem}
+.appbtns{display:flex;flex-wrap:wrap;gap:12px}.appbtn{display:flex;align-items:center;gap:10px;background:#000;color:#fff;border:1px solid #444;border-radius:10px;padding:8px 18px 8px 14px;cursor:pointer;font-family:inherit;text-align:left}
+.appbtn .ic{font-size:26px;line-height:1}.appbtn small{display:block;font-size:.68rem;opacity:.85;letter-spacing:.02em}.appbtn b{display:block;font-size:1.05rem;font-weight:600;line-height:1.15}
+.appbtn:hover{border-color:var(--tag)}
+#idlg .dl{display:block}#idlg h2{font-size:1.3rem;font-weight:800;margin-bottom:10px}#idlg ol{margin:0 0 12px;padding-left:22px}#idlg li{margin:6px 0}#idlg .meta{margin-top:10px}
+
+/* ===== Device polish: phones, tablets, laptops ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button,a,select,input,.card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+input[type=search],select{font-size:16px;min-height:44px;-webkit-appearance:none;appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:36px}
+.chip{min-height:44px;white-space:nowrap}
+.buy,.appbtn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.appbtn{display:flex}
+.close{width:44px;height:44px}
+.pic{aspect-ratio:1/1}
+@supports not (aspect-ratio:1/1){.pic{height:0;padding-bottom:100%;position:relative}.pic>*{position:absolute;inset:0;display:grid;place-items:center}}
+.card{min-width:0}.card h3,.offer b{overflow-wrap:anywhere}
+.logo{flex:0 0 auto}
+.country{margin-left:auto}
+body.lock{overflow:hidden}
+dialog:not([open]){display:none}
+dialog{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+dialog:not([open]) + *{}
+.fallback-open{display:block;position:fixed;inset:0;margin:auto;z-index:50}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .bar{padding:12px 16px;gap:10px}
+  .search{order:3;flex:1 1 100%}
+  .country{margin-left:auto;max-width:60%}
+  .hero{padding:24px 0 4px}
+  .hero p{font-size:1rem}
+  .badges{flex-direction:column;gap:6px}
+  .tools{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:10px}
+  .tools>*{min-width:0}
+  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px;scroll-snap-type:x proximity;scroll-padding:0 16px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{scroll-snap-align:start;flex:0 0 auto}
+  .sort{width:100%}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
+  .pic{font-size:52px}
+  .card h3{font-size:.92rem}
+  .price{font-size:.95rem}
+  dialog{width:100%;max-width:none;margin:auto 0 0;border-radius:20px 20px 0 0;max-height:92vh;max-height:92dvh}
+  .dl{padding:16px;gap:14px}
+  .dl .pic{max-width:200px;margin:0 auto;width:100%;font-size:72px}
+  .offer{flex-wrap:wrap}
+  .offer .buy{flex:1 1 100%}
+  .getapp .row{flex-direction:column;align-items:flex-start}
+  .appbtns{width:100%}.appbtn{flex:1 1 140px}
+  .storelist a{flex:0 0 auto}
+}
+@media (min-width:641px) and (max-width:1000px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+}
+@media (min-width:1500px){.wrap{max-width:1280px}.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+@media (hover:hover){.card:hover .pic{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.12)}.pic{transition:transform .15s,box-shadow .15s}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media print{header,.tools,.getapp,dialog{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="logo"><span>My</span>Picks</div>
+  <div class="search"><input type="search" id="q" placeholder="Shop for anything" aria-label="Search products"></div>
+  <select id="country" class="country" aria-label="Your country"></select>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Shop the world, one tap away.</h1>
+    <p>Pick your country, compare trusted stores, and buy safely on their site.</p>
+    <ul class="badges"><li>Links to trusted, well-known stores</li><li>Pay safely on the store's own checkout</li><li>Delivery and returns handled by the store</li><li>Available for 30+ countries</li></ul>
+    <p style="display:none"></p>
+  </section>
+  <div class="tools" style="margin-bottom:6px"><div class="meta" id="note"></div></div>
+  <div class="tools">
+    <div class="chips" id="chips"></div>
+    <select class="sort" id="sort" aria-label="Sort products">
+      <option value="rel">Sort: Featured</option>
+      <option value="asc">Price: low to high</option>
+      <option value="desc">Price: high to low</option>
+    </select>
+  </div>
+  <section class="grid" id="grid" aria-live="polite"></section>
+</main>
+
+<section class="getapp" id="getapp"><div class="wrap row">
+  <div><h2>Get the My Picks app</h2><p>Add the store to your phone's home screen and open it like an app, with no app store needed.</p></div>
+  <div class="appbtns">
+    <button class="appbtn" id="btnAndroid" type="button"><span class="ic" aria-hidden="true">📲</span><span><small>Install on</small><b>Android</b></span></button>
+    <button class="appbtn" id="btnIos" type="button"><span class="ic" aria-hidden="true">📲</span><span><small>Install on</small><b>iPhone / iPad</b></span></button>
+  </div>
+</div></section>
+
+<section class="trust" id="stores"><div class="wrap">
+  <h2>Top trusted stores around the world</h2>
+  <p>Our product pages link to these big stores. You can also visit them directly.</p>
+  <div class="storelist" id="storelist"></div>
+</div></section>
+
+<section class="about" id="about"><div class="wrap">
+  <h2>About My Picks Store</h2>
+  <p>Welcome to My Picks Store. I hand-pick popular products in fashion, nightwear, innerwear, perfume, wallets, bikes and scooters, gaming, electronics, home, fitness, beauty and more, so you don't have to spend hours searching.</p>
+  <p>For each product, you can see which stores sell it and what they charge. When you're ready, tap Buy now and you'll go straight to the store you choose, such as Amazon, noon, eBay, AliExpress, Walmart, Zalando or Rakuten, depending on your country. You pay, and get delivery and returns, directly with that store.</p>
+  <p>Prices and stock are set by each store and can change, so always check the final price on the store's page. Some links are affiliate links, which means I may earn a small commission at no extra cost to you.</p>
+  </div></section>
+
+<dialog id="dlg" aria-label="Product details">
+  <button class="close" id="x" aria-label="Close">&times;</button>
+  <div class="dl" id="dbody"></div>
+</dialog>
+
+<dialog id="idlg" aria-label="Install the app">
+  <button class="close" id="ix" aria-label="Close">&times;</button>
+  <div class="dl"><div id="ihelp"></div></div>
+</dialog>
+
+<footer><div class="wrap">
+    <p style="margin:0;color:var(--ink);font-weight:600">&copy; 2026 Parvez Ahmed Shaikh. All rights reserved.</p>
+  <p style="margin:8px 0 0"><a href="privacy-policy.html" style="color:inherit">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html" style="color:inherit">Terms of Use</a></p>
+  <p style="margin:4px 0 0">The design, text and layout of this website are protected by copyright. Copying or reproducing any part of it without written permission is not allowed.</p>
+</div></footer>
+
+<script>
+/* ============ SETTINGS: edit these ============ */
+// Your affiliate IDs. Leave "" until you have them. Amazon needs one ID per country site.
+const AFF = {
+  amazon: { "ae":"mypicksshop0d-21" /* add other Amazon countries only after you join their Associates programs, e.g. "com":"yourtag-20", "co.uk":"yourtag-21" */ },
+  ebay: "",        // e.g. "mkcid=1&campid=YOURID"
+  noon: "",        // e.g. "utm_source=yourid"
+  aliexpress: "", flipkart: "", daraz: "", jumia: "", shopee: "", lazada: "", walmart: "",
+  target: "", bestbuy: "", etsy: "", ikea: "", mercadolibre: "", zalando: "", asos: "", allegro: "", rakuten: "", coupang: ""
+};
+// Prices you type are shown only to visitors from the matching country.
+// An offer with no "country" is treated as a UAE (AE) offer. Use country:"*" to show an offer everywhere.
+const DEFAULT_COUNTRY = "AE", DEFAULT_CURRENCY = "AED";
+
+/* ----- Stores for each country (search links; they work right away) ----- */
+const enc = encodeURIComponent;
+const add = (k, u) => u + (AFF[k] ? (u.includes("?") ? "&" : "?") + AFF[k] : "");
+const dash = q => q.trim().toLowerCase().split(/\s+/).map(enc).join("-");
+const A  = d  => ({name:"Amazon."+d, fn:q=>"https://www.amazon."+d+"/s?k="+enc(q)+(AFF.amazon[d]?"&tag="+AFF.amazon[d]:"")});
+const E  = d  => ({name:"eBay", fn:q=>add("ebay","https://www.ebay."+d+"/sch/i.html?_nkw="+enc(q))});
+const AX = () => ({name:"AliExpress", fn:q=>add("aliexpress","https://www.aliexpress.com/wholesale?SearchText="+enc(q))});
+const NO = p  => ({name:"noon", fn:q=>add("noon","https://www.noon.com/"+p+"/search/?q="+enc(q))});
+const FK = () => ({name:"Flipkart", fn:q=>add("flipkart","https://www.flipkart.com/search?q="+enc(q))});
+const DZ = d  => ({name:"Daraz", fn:q=>add("daraz","https://www.daraz."+d+"/catalog/?q="+enc(q))});
+const JU = d  => ({name:"Jumia", fn:q=>add("jumia","https://www.jumia."+d+"/catalog/?q="+enc(q))});
+const SH = d  => ({name:"Shopee", fn:q=>add("shopee","https://shopee."+d+"/search?keyword="+enc(q))});
+const LZ = d  => ({name:"Lazada", fn:q=>add("lazada","https://www.lazada."+d+"/catalog/?q="+enc(q))});
+const WM = d  => ({name:"Walmart", fn:q=>add("walmart","https://www.walmart."+d+(d==="ca"?"/en":"")+"/search?q="+enc(q))});
+const TG = () => ({name:"Target", fn:q=>add("target","https://www.target.com/s?searchTerm="+enc(q))});
+const BB = d  => ({name:"Best Buy", fn:q=>add("bestbuy", d==="ca"?"https://www.bestbuy.ca/en-ca/search?search="+enc(q):"https://www.bestbuy.com/site/searchpage.jsp?st="+enc(q))});
+const ET = () => ({name:"Etsy", fn:q=>add("etsy","https://www.etsy.com/search?q="+enc(q))});
+const IK = (cc,l) => ({name:"IKEA", fn:q=>add("ikea","https://www.ikea.com/"+cc+"/"+l+"/search/?q="+enc(q))});
+const ML = (d,n) => ({name:n||"Mercado Libre", fn:q=>add("mercadolibre", (d==="com.br"?"https://lista.mercadolivre.com.br/":"https://listado.mercadolibre."+d+"/")+dash(q))});
+const ZA = (d,p) => ({name:"Zalando", fn:q=>add("zalando","https://www.zalando."+d+"/"+p+"/?q="+enc(q))});
+const AS = () => ({name:"ASOS", fn:q=>add("asos","https://www.asos.com/search/?q="+enc(q))});
+const AL = () => ({name:"Allegro", fn:q=>add("allegro","https://allegro.pl/listing?string="+enc(q))});
+const RK = () => ({name:"Rakuten", fn:q=>add("rakuten","https://search.rakuten.co.jp/search/mall/"+enc(q)+"/")});
+const CP = () => ({name:"Coupang", fn:q=>add("coupang","https://www.coupang.com/np/search?q="+enc(q))});
+const GLOBAL = () => [A("com"), E("com"), ET(), AX()];
+
+const COUNTRIES = {
+  WW:{n:"Other / Worldwide", s:GLOBAL()},
+  AE:{n:"United Arab Emirates", s:[A("ae"), NO("uae-en"), IK("ae","en"), E("com"), AX()]},
+  SA:{n:"Saudi Arabia", s:[A("sa"), NO("saudi-en"), IK("sa","en"), E("com"), AX()]},
+  EG:{n:"Egypt", s:[A("eg"), NO("egypt-en"), JU("com.eg"), IK("eg","en"), E("com"), AX()]},
+  QA:{n:"Qatar", s:[A("com"), IK("qa","en"), E("com"), ET(), AX()]},
+  KW:{n:"Kuwait", s:[A("com"), IK("kw","en"), E("com"), ET(), AX()]},
+  BH:{n:"Bahrain", s:[A("com"), IK("bh","en"), E("com"), ET(), AX()]},
+  OM:{n:"Oman", s:GLOBAL()},
+  IN:{n:"India", s:[A("in"), FK(), IK("in","en")]},
+  PK:{n:"Pakistan", s:[DZ("pk"), A("com"), E("com"), ET(), AX()]},
+  BD:{n:"Bangladesh", s:[DZ("com.bd"), A("com"), E("com"), ET(), AX()]},
+  LK:{n:"Sri Lanka", s:[DZ("lk"), A("com"), E("com"), AX()]},
+  NP:{n:"Nepal", s:[DZ("com.np"), A("com"), AX()]},
+  US:{n:"United States", s:[A("com"), E("com"), WM("com"), TG(), BB("com"), ET(), IK("us","en"), AS(), AX()]},
+  CA:{n:"Canada", s:[A("ca"), E("ca"), WM("ca"), BB("ca"), ET(), IK("ca","en"), AX()]},
+  GB:{n:"United Kingdom", s:[A("co.uk"), E("co.uk"), AS(), ZA("co.uk","catalog"), ET(), IK("gb","en"), AX()]},
+  DE:{n:"Germany", s:[A("de"), E("de"), ZA("de","katalog"), AS(), ET(), IK("de","de"), AX()]},
+  FR:{n:"France", s:[A("fr"), E("fr"), ZA("fr","catalogue"), AS(), ET(), IK("fr","fr"), AX()]},
+  IT:{n:"Italy", s:[A("it"), E("it"), ZA("it","catalogo"), AS(), ET(), IK("it","it"), AX()]},
+  ES:{n:"Spain", s:[A("es"), E("es"), ZA("es","catalogo"), AS(), ET(), IK("es","es"), AX()]},
+  NL:{n:"Netherlands", s:[A("nl"), E("nl"), ZA("nl","catalogus"), AS(), ET(), IK("nl","nl"), AX()]},
+  BE:{n:"Belgium", s:[A("com.be"), E("com"), AS(), ET(), AX()]},
+  SE:{n:"Sweden", s:[A("se"), ZA("se","katalog"), E("com"), AS(), ET(), IK("se","sv"), AX()]},
+  PL:{n:"Poland", s:[A("pl"), AL(), ZA("pl","katalog"), E("pl"), AS(), ET(), IK("pl","pl"), AX()]},
+  TR:{n:"Turkey", s:[A("com.tr"), AS(), ET(), AX()]},
+  AU:{n:"Australia", s:[A("com.au"), E("com.au"), AS(), ET(), IK("au","en"), AX()]},
+  SG:{n:"Singapore", s:[A("sg"), SH("sg"), LZ("sg"), IK("sg","en"), ET(), AX()]},
+  MY:{n:"Malaysia", s:[SH("com.my"), LZ("com.my"), IK("my","en"), ET(), AX()]},
+  PH:{n:"Philippines", s:[SH("ph"), LZ("com.ph"), IK("ph","en"), ET(), AX()]},
+  ID:{n:"Indonesia", s:[SH("co.id"), LZ("co.id"), IK("id","en"), AX()]},
+  TH:{n:"Thailand", s:[SH("co.th"), LZ("co.th"), IK("th","en"), AX()]},
+  VN:{n:"Vietnam", s:[SH("vn"), LZ("vn"), AX()]},
+  JP:{n:"Japan", s:[RK(), A("co.jp"), IK("jp","ja"), ET(), E("com"), AX()]},
+  KR:{n:"South Korea", s:[CP(), E("com"), ET(), AX()]},
+  BR:{n:"Brazil", s:[ML("com.br","Mercado Livre"), A("com.br"), AX()]},
+  MX:{n:"Mexico", s:[ML("com.mx"), A("com.mx"), E("com"), AX()]},
+  AR:{n:"Argentina", s:[ML("com.ar"), A("com"), AX()]},
+  CO:{n:"Colombia", s:[ML("com.co"), A("com"), AX()]},
+  CL:{n:"Chile", s:[ML("cl"), A("com"), AX()]},
+  ZA:{n:"South Africa", s:[A("co.za"), E("com"), ET(), AX()]},
+  NG:{n:"Nigeria", s:[JU("com.ng"), A("com"), AX()]},
+  KE:{n:"Kenya", s:[JU("co.ke"), A("com"), AX()]},
+  MA:{n:"Morocco", s:[JU("ma"), A("com"), AX()]}
+};
+// the 20 featured stores (home pages), shown as a strip on the page
+const FEATURED = [
+ ["Amazon","https://www.amazon.com"],["eBay","https://www.ebay.com"],["Walmart","https://www.walmart.com"],["Target","https://www.target.com"],
+ ["Best Buy","https://www.bestbuy.com"],["Etsy","https://www.etsy.com"],["IKEA","https://www.ikea.com"],["Mercado Libre","https://www.mercadolibre.com"],
+ ["Zalando","https://www.zalando.co.uk"],["ASOS","https://www.asos.com"],["Allegro","https://allegro.pl"],["noon","https://www.noon.com"],
+ ["Jumia","https://www.jumia.com"],["AliExpress","https://www.aliexpress.com"],["Flipkart","https://www.flipkart.com"],["Rakuten","https://www.rakuten.co.jp"],
+ ["Shopee","https://shopee.com"],["Lazada","https://www.lazada.com"],["Daraz","https://www.daraz.com"],["Coupang","https://www.coupang.com"]
+];
+
+/* ----- Products -----
+   One block per product. "search" = words used to search the stores.
+   offers: optional prices you typed yourself (country, currency, price, note, url).
+   With offers:[] the product still works: visitors see store links for their country. */
+const PRODUCTS = [
+  {name:"Men's Casual Shirt", category:"Men", emoji:"👔", color:"#dbe6ff", desc:"Everyday cotton-style shirt for work and weekends.", search:"men casual shirt", offers:[]},
+  {name:"Men's Jeans", category:"Men", emoji:"👖", color:"#d3ecf2", desc:"Regular-fit jeans for daily wear.", search:"men jeans", offers:[]},
+  {name:"Women's Dress", category:"Women", emoji:"👗", color:"#f9d9d3", desc:"Easy day-to-evening dress in many styles and sizes.", search:"women dress", offers:[]},
+  {name:"Women's Top & Kurti", category:"Women", emoji:"👚", color:"#e8dcf7", desc:"Light tops and kurtis for everyday wear.", search:"women top kurti", offers:[]},
+  {name:"Men's Leather Wallet", category:"Wallets", emoji:"👝", color:"#e7e4d8", desc:"Slim wallet with card slots and a cash pocket.", search:"men leather wallet", offers:[]},
+  {name:"Women's Wallet", category:"Wallets", emoji:"👛", color:"#fbe3c8", desc:"Zip wallet with space for cards, cash and a phone.", search:"women wallet", offers:[]},
+  {name:"Men's Nightwear Set", category:"Nightwear", emoji:"🌙", color:"#e3e8ff", desc:"Soft pajama set for comfortable sleep.", search:"men pajama set nightwear", offers:[]},
+  {name:"Women's Nightwear Set", category:"Nightwear", emoji:"😴", color:"#e8dcf7", desc:"Soft sleepwear set for comfortable nights.", search:"women nightwear set", offers:[]},
+  {name:"Men's Innerwear Pack", category:"Innerwear", emoji:"🩲", color:"#d7efe3", desc:"Multi-pack of comfortable everyday innerwear.", search:"men innerwear briefs pack", offers:[]},
+  {name:"Women's Innerwear Set", category:"Innerwear", emoji:"🎀", color:"#f9d9d3", desc:"Everyday comfort innerwear in a range of sizes.", search:"women innerwear set", offers:[]},
+  {name:"Men's Perfume", category:"Perfume", emoji:"🌿", color:"#cdeff0", desc:"Fragrance for men, from fresh to woody scents.", search:"men perfume", offers:[]},
+  {name:"Women's Perfume", category:"Perfume", emoji:"🌸", color:"#fbd9e6", desc:"Fragrance for women, from floral to sweet scents.", search:"women perfume", offers:[]},
+  {name:"Mountain Bicycle", category:"Bikes & Scooters", emoji:"🚲", color:"#d7efe3", desc:"Geared bicycle for city rides and trails.", search:"mountain bicycle", offers:[]},
+  {name:"Electric Scooter", category:"Bikes & Scooters", emoji:"🛴", color:"#fdeab0", desc:"Foldable e-scooter for short city trips.", search:"electric scooter adult", offers:[]},
+  {name:"Nintendo Switch Lite", category:"Gaming", emoji:"🎮", color:"#cdeff0", rating:4.7, reviews:"28K", desc:"Handheld game console with a 5.5-inch screen.", search:"Nintendo Switch Lite",
+   offers:[{store:"Amazon.ae",price:690,note:"Free delivery"},{store:"noon",price:722,note:"Free delivery"},{store:"eBay",price:712,note:"Delivery extra"}]},
+  {name:"Wireless Game Controller", category:"Gaming", emoji:"🕹️", color:"#e3e8ff", rating:4.5, reviews:"3.2K", desc:"Bluetooth controller for console and PC.", search:"wireless game controller",
+   offers:[{store:"noon",price:85,note:"Free delivery"},{store:"Amazon.ae",price:92,note:"Free delivery"}]},
+  {name:"Laptop Stand", category:"Office", emoji:"💻", color:"#dbe6ff", rating:4.6, reviews:"9.4K", desc:"Adjustable aluminum stand that lifts your screen to eye level.", search:"aluminum laptop stand",
+   offers:[{store:"Amazon.ae",price:89,note:"Free delivery"},{store:"noon",price:95,note:"Free delivery"},{store:"eBay",price:79,note:"Delivery extra"}]},
+  {name:"Wireless Earbuds", category:"Audio", emoji:"🎧", color:"#f9d9d3", rating:4.4, reviews:"12K", desc:"Bluetooth earbuds with charging case and noise reduction.", search:"wireless earbuds",
+   offers:[{store:"noon",price:129,note:"Free delivery"},{store:"Amazon.ae",price:135,note:"Free delivery"}]},
+  {name:"Running Shoes", category:"Fashion", emoji:"👟", color:"#fdeab0", rating:4.3, reviews:"1.8K", desc:"Lightweight cushioned shoes for daily runs.", search:"men running shoes",
+   offers:[{store:"noon",price:249,note:"14-day returns"},{store:"Amazon.ae",price:265,note:"Free delivery"},{store:"eBay",price:230,note:"Delivery extra"}]},
+  {name:"Smart Watch", category:"Audio", emoji:"⌚", color:"#e8dcf7", rating:4.2, reviews:"6.1K", desc:"Tracks steps, sleep and heart rate. Shows phone alerts.", search:"smart watch",
+   offers:[{store:"Amazon.ae",price:199,note:"Free delivery"},{store:"noon",price:189,note:"Free delivery"}]},
+  {name:"Travel Backpack", category:"Fashion", emoji:"🎒", color:"#d3ecf2", rating:4.6, reviews:"4.7K", desc:"Padded laptop pocket and water-resistant fabric.", search:"travel laptop backpack",
+   offers:[{store:"Amazon.ae",price:165,note:"Free delivery"},{store:"noon",price:159,note:"Free delivery"}]},
+  {name:"LED Desk Lamp", category:"Office", emoji:"💡", color:"#fbe3c8", rating:4.5, reviews:"2.9K", desc:"Dimmable lamp with three color temperatures.", search:"LED desk lamp",
+   offers:[{store:"noon",price:99,note:"Free delivery"},{store:"Amazon.ae",price:105,note:"Free delivery"},{store:"eBay",price:92,note:"Delivery extra"}]},
+  {name:"Phone Tripod", category:"Office", emoji:"📱", color:"#d7efe3", rating:4.4, reviews:"5.3K", desc:"Compact, bendable legs and a remote shutter for filming.", search:"phone tripod",
+   offers:[{store:"Amazon.ae",price:79,note:"Free delivery"},{store:"noon",price:75,note:"Free delivery"}]},
+  {name:"Insulated Water Bottle", category:"Home", emoji:"🧴", color:"#e7e4d8", rating:4.7, reviews:"15K", desc:"Keeps drinks cold for a day or hot for hours.", search:"insulated water bottle", offers:[
+    {store:"noon",price:89,note:"Free delivery"},{store:"Amazon.ae",price:95,note:"Free delivery"}]},
+  {name:"Power Bank 20000mAh", category:"Electronics", emoji:"🔋", color:"#fdeab0", desc:"Portable charger for phones and tablets.", search:"power bank 20000mAh", offers:[]},
+  {name:"Bluetooth Speaker", category:"Audio", emoji:"🔊", color:"#e3e8ff", desc:"Portable wireless speaker for home and travel.", search:"portable bluetooth speaker", offers:[]},
+  {name:"Mechanical Keyboard", category:"Office", emoji:"⌨️", color:"#dbe6ff", desc:"Keyboard with tactile keys for typing and gaming.", search:"mechanical keyboard", offers:[]},
+  {name:"Webcam 1080p", category:"Electronics", emoji:"📷", color:"#e8dcf7", desc:"Full HD webcam for video calls and streaming.", search:"1080p webcam", offers:[]},
+  {name:"Air Fryer", category:"Home", emoji:"🍟", color:"#fbe3c8", desc:"Cooks food with hot air and little oil.", search:"air fryer", offers:[]},
+  {name:"Coffee Maker", category:"Home", emoji:"☕", color:"#e7e4d8", desc:"Brews coffee at home in a few minutes.", search:"coffee maker", offers:[]},
+  {name:"Yoga Mat", category:"Fitness", emoji:"🧘", color:"#d7efe3", desc:"Non-slip mat for yoga and floor exercises.", search:"yoga mat", offers:[]},
+  {name:"Adjustable Dumbbells", category:"Fitness", emoji:"🏋️", color:"#d3ecf2", desc:"Dumbbell set with changeable weights for home workouts.", search:"adjustable dumbbells", offers:[]},
+  {name:"Building Blocks Set", category:"Toys", emoji:"🧱", color:"#f9d9d3", desc:"Creative block set for kids.", search:"building blocks set", offers:[]},
+  {name:"Hair Dryer", category:"Beauty", emoji:"💇", color:"#e8dcf7", desc:"Fast-drying hair dryer with heat settings.", search:"hair dryer", offers:[]},
+  {name:"Electric Toothbrush", category:"Beauty", emoji:"🪥", color:"#cdeff0", desc:"Rechargeable brush with timer.", search:"electric toothbrush", offers:[]},
+  {name:"Perfume Gift Set", category:"Perfume", emoji:"✨", color:"#fbd9e6", desc:"Gift box with fragrance bottles for him or her.", search:"perfume gift set", offers:[]}
+];
+/* ============ end of settings ============ */
+
+const $=id=>document.getElementById(id);
+// make <dialog> work on older phones and add background scroll lock
+document.querySelectorAll("dialog").forEach(d=>{
+  if(typeof d.showModal!=="function"){
+    d.showModal=function(){this.setAttribute("open","");this.classList.add("fallback-open");document.body.classList.add("lock")};
+    d.close=function(){this.removeAttribute("open");this.classList.remove("fallback-open");document.body.classList.remove("lock")};
+  }else{
+    const sm=d.showModal.bind(d);d.showModal=()=>{sm();document.body.classList.add("lock")};
+    d.addEventListener("close",()=>document.body.classList.remove("lock"));
+  }
+});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let C="WW", cat="All";
+
+// pick the visitor's country from their browser language, or from their saved choice
+function detect(){
+  try{const s=localStorage.getItem("mp_country"); if(s&&COUNTRIES[s]) return s}catch(e){}
+  for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(COUNTRIES[r]) return r}
+  return "WW";
+}
+const priced=p=>p.offers.filter(o=>(o.country||DEFAULT_COUNTRY)===C||o.country==="*");
+const cur=o=>o.currency||DEFAULT_CURRENCY;
+const money=o=>cur(o)+" "+Number(o.price).toLocaleString("en-US",{maximumFractionDigits:2});
+const lowest=p=>{const a=priced(p).sort((x,y)=>x.price-y.price);return a[0]||null};
+const q=p=>p.search||p.name;
+function linkFor(p,o){
+  if(o.url) return o.url;
+  const s=COUNTRIES[C].s.find(x=>x.name.toLowerCase()===String(o.store).toLowerCase()||x.name.toLowerCase().startsWith(String(o.store).toLowerCase()));
+  return s?s.fn(q(p)):"";
+}
+const cats=["All",...new Set(PRODUCTS.map(p=>p.category))];
+
+function pic(p){return `<div class="pic" style="background:${esc(p.color||'#eee')}">${p.img?`<img src="${esc(p.img)}" alt="${esc(p.name)}">`:`<span aria-hidden="true">${p.emoji||'🛍️'}</span>`}</div>`}
+const stars=p=>p.rating?`${p.rating} ★ (${esc(p.reviews||'')})`:'';
+
+function drawChips(){$("chips").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}
+function draw(){
+  const t=$("q").value.trim().toLowerCase(), s=$("sort").value;
+  let list=PRODUCTS.map((p,i)=>({p,i,l:lowest(p)})).filter(({p})=>(cat==="All"||p.category===cat)&&(!t||(p.name+" "+p.desc+" "+p.category).toLowerCase().includes(t)));
+  const v=x=>x.l?x.l.price:Infinity;
+  if(s==="asc")list.sort((a,b)=>v(a)-v(b)); if(s==="desc")list.sort((a,b)=>(b.l?b.l.price:-1)-(a.l?a.l.price:-1));
+  $("note").textContent="Showing stores for "+COUNTRIES[C].n;
+  $("grid").innerHTML=list.length?list.map(({p,i,l})=>{
+    const names=COUNTRIES[C].s.map(x=>x.name);
+    return `<button class="card" data-i="${i}">${pic(p)}<h3>${esc(p.name)}</h3>${l?`<div class="price">From ${money(l)}</div>`:`<div class="price">Compare stores</div>`}<div class="meta">${esc(names[0])}${names.length>1?" &amp; more":""}</div><div class="meta">${stars(p)}</div></button>`}).join(''):'<p class="empty">No products match. Try a different search or category.</p>';
+}
+function showProduct(i){
+  const p=PRODUCTS[i], P=priced(p).sort((a,b)=>a.price-b.price).filter(o=>linkFor(p,o));
+  const covered=new Set(P.map(o=>String(o.store).toLowerCase()));
+  const extra=COUNTRIES[C].s.filter(s=>![...covered].some(c=>s.name.toLowerCase().startsWith(c)||c.startsWith(s.name.toLowerCase())));
+  $("dbody").innerHTML=`<div>${pic(p)}</div><div><h2>${esc(p.name)}</h2><div class="meta">${stars(p)}</div><p>${esc(p.desc)}</p>
+  <div class="meta">Stores for ${esc(COUNTRIES[C].n)}</div><div class="offers">`+
+  P.map((o,k)=>`<div class="offer"><div><b>${esc(o.store)}</b><div class="meta">${esc(o.note||'')}</div></div>
+   <div style="text-align:right"><div class="p">${money(o)}</div>${k===0&&P.length>1?'<div class="best">Lowest price</div>':''}</div>
+   <a class="buy" href="${esc(linkFor(p,o))}" target="_blank" rel="sponsored noopener noreferrer">Buy now</a></div>`).join('')+
+  extra.map(s=>`<div class="offer"><div><b>${esc(s.name)}</b><div class="meta">Check today's price</div></div>
+   <a class="buy" href="${esc(s.fn(q(p)))}" target="_blank" rel="sponsored noopener noreferrer">View on ${esc(s.name)}</a></div>`).join('')+`</div></div>`;
+  $("dlg").showModal();
+}
+$("country").innerHTML=Object.entries(COUNTRIES).sort((a,b)=>a[0]==="WW"?-1:b[0]==="WW"?1:a[1].n.localeCompare(b[1].n)).map(([k,v])=>`<option value="${k}">${esc(v.n)}</option>`).join('');
+C=detect(); $("country").value=C;
+$("country").addEventListener("change",e=>{C=e.target.value;try{localStorage.setItem("mp_country",C)}catch(x){};draw()});
+$("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){cat=b.dataset.c;drawChips();draw()}});
+$("grid").addEventListener("click",e=>{const b=e.target.closest(".card");if(b)showProduct(+b.dataset.i)});
+$("q").addEventListener("input",draw); $("sort").addEventListener("change",draw);
+$("x").addEventListener("click",()=>$("dlg").close());
+$("dlg").addEventListener("click",e=>{if(e.target===$("dlg"))$("dlg").close()});
+$("storelist").innerHTML=FEATURED.map(f=>`<a href="${esc(f[1])}" target="_blank" rel="sponsored noopener noreferrer">${esc(f[0])}</a>`).join("");
+drawChips();draw();
+
+/* ----- Install as an app (works from your own https website) ----- */
+let deferredPrompt=null;
+const isStandalone=()=>(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+if(isStandalone()){const g=$("getapp");if(g)g.hidden=true}
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e});
+window.addEventListener("appinstalled",()=>{deferredPrompt=null;const g=$("getapp");if(g)g.hidden=true});
+function help(kind){
+  const android=`<h2>Install on Android</h2><ol><li>Open this website in <b>Chrome</b>.</li><li>Tap the <b>&#8942;</b> menu at the top right.</li><li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li><li>Tap <b>Install</b>. The My Picks icon appears on your home screen.</li></ol><p class="meta">Using another browser? Open this page in Chrome first.</p>`;
+  const ios=`<h2>Install on iPhone / iPad</h2><ol><li>Open this website in <b>Safari</b>.</li><li>Tap the <b>Share</b> button (the square with an arrow).</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>. The My Picks icon appears on your home screen.</li></ol><p class="meta">Apple only allows this from Safari, not from other browsers.</p>`;
+  $("ihelp").innerHTML=kind==="ios"?ios:android;
+  $("idlg").showModal();
+}
+$("btnAndroid").addEventListener("click",()=>{
+  if(deferredPrompt){const p=deferredPrompt;deferredPrompt=null;p.prompt();p.userChoice.catch(()=>{})}
+  else help("android");
+});
+$("btnIos").addEventListener("click",()=>help("ios"));
+$("ix").addEventListener("click",()=>$("idlg").close());
+$("idlg").addEventListener("click",e=>{if(e.target===$("idlg"))$("idlg").close()});
+if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
+  window.addEventListener("load",()=>{try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}});
+}
+</script>
+</body>
+</html>
