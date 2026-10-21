@@ -318,6 +318,17 @@ const COUNTRIES = {
   KE:{n:"Kenya", s:[JU("co.ke"), A("com"), AX()]},
   MA:{n:"Morocco", s:[JU("ma"), A("com"), AX()]}
 };
+
+// Only show Amazon marketplaces where an Associates tracking ID is configured.
+// This prevents visitors from being sent to untagged Amazon search links.
+Object.values(COUNTRIES).forEach(country => {
+  country.s = country.s.filter(store => {
+    if (!store.name.startsWith("Amazon.")) return true;
+    const marketplace = store.name.slice("Amazon.".length);
+    return Boolean(AFF.amazon[marketplace]);
+  });
+});
+
 // the 20 featured stores (home pages), shown as a strip on the page
 const FEATURED = [
  ["Amazon","https://www.amazon.com"],["eBay","https://www.ebay.com"],["Walmart","https://www.walmart.com"],["Target","https://www.target.com"],
