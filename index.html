@@ -158,16 +158,16 @@ dialog:not([open]) + *{}
 </main>
 
 <section class="trust" id="stores"><div class="wrap">
-  <h2>Shop on Amazon</h2>
-  <p>Browse products and continue to Amazon to check current prices and availability.</p>
+  <h2>Top trusted stores around the world</h2>
+  <p>Our product pages link to these big stores. You can also visit them directly.</p>
   <div class="storelist" id="storelist"></div>
 </div></section>
 
 <section class="about" id="about"><div class="wrap">
   <h2>About My Picks Store</h2>
   <p>Welcome to My Picks Store. I hand-pick popular products in fashion, nightwear, innerwear, perfume, wallets, bikes and scooters, gaming, electronics, home, fitness, beauty and more, so you don't have to spend hours searching.</p>
-  <p>Browse products on My Picks Store and tap Buy now to search for them on Amazon. You complete any purchase directly on Amazon, which handles payment, delivery and returns.</p>
-  <p>Prices and availability can change, so always check the final details on Amazon before buying. As an Amazon Associate I earn from qualifying purchases.</p>
+  <p>For each product, you can see which stores sell it and what they charge. When you're ready, tap Buy now and you'll go straight to the store you choose, such as Amazon, noon, eBay, AliExpress, Walmart, Zalando or Rakuten, depending on your country. You pay, and get delivery and returns, directly with that store.</p>
+  <p>Prices and stock are set by each store and can change, so always check the final price on the store's page. As an Amazon Associate I earn from qualifying purchases. Some other links are affiliate links too, which means I may earn a small commission at no extra cost to you.</p>
   </div></section>
 
 <dialog id="dlg" aria-label="Product details">
@@ -180,15 +180,15 @@ dialog:not([open]) + *{}
   <div class="dl legal">
 <h2>Privacy Policy</h2>
 <p class="meta">Last updated: October 2026.</p>
-<p>My Picks Store is owned and run by Parvez Ahmed Shaikh. This website shows product suggestions and may send you to Amazon. You do not need an account, and this website does not take payments or ask for your name, email, address or any other personal details.</p>
+<p>My Picks Store is owned and run by Parvez Ahmed Shaikh. This website shows products and sends you to other stores. You do not need an account, and this website does not take payments or ask for your name, email, address or any other personal details.</p>
 <h3>What this website stores on your device</h3>
-<p>Your supported Amazon marketplace choice may be saved in your browser (local storage) so the relevant Amazon links show next time. This stays on your device and is not sent to me. You can clear it in your browser settings at any time.</p>
+<p>When you choose a country, your choice is saved in your browser (local storage) so the right stores show next time. This stays on your device and is not sent to me. You can clear it in your browser settings at any time.</p>
 <h3>Fonts</h3>
 <p>This website loads its fonts from Google Fonts. When a page loads, Google may receive your IP address and browser details, as with any website that uses Google Fonts. See Google's privacy policy for details.</p>
-<h3>Links to Amazon</h3>
-<p>When you click a product link, you may leave this website and go to Amazon. Amazon has its own privacy policy and may collect data, including cookies. This website does not control Amazon's data practices. Please read Amazon's policies.</p>
+<h3>Links to other stores</h3>
+<p>When you click Buy now or View on a store, you leave this website and go to a store such as Amazon, noon, eBay or others. Those stores have their own privacy policies and collect their own data, including cookies. This website does not control them and is not responsible for them. Please read their policies.</p>
 <h3>Affiliate links</h3>
-<p>As an Amazon Associate I earn from qualifying purchases. Amazon may use cookies or other methods to attribute qualifying purchases to this website.</p>
+<p>As an Amazon Associate I earn from qualifying purchases. Some other links on this website are also affiliate links. If you buy through them, the owner of this website may earn a commission at no extra cost to you. A store may use cookies to know the visit came from this website.</p>
 <h3>Analytics and advertising</h3>
 <p>This website does not currently use analytics or advertising tools. If that changes, this policy will be updated before they are used.</p>
 <h3>Children</h3>
@@ -207,13 +207,13 @@ dialog:not([open]) + *{}
 <p class="meta">Last updated: October 2026.</p>
 <p>By using My Picks Store you agree to these terms. If you do not agree, please do not use the website.</p>
 <h3>What this site is</h3>
-<p>This website lists product suggestions and helps you find products on Amazon. It does not sell, pack or deliver anything. Purchases are made on Amazon and are covered by Amazon's terms, payment, delivery, warranty and returns rules.</p>
+<p>This website lists products and helps you find them in other stores. It does not sell, pack or deliver anything. Every purchase is made on the other store's website and is covered by that store's terms, payment, delivery, warranty and returns rules.</p>
 <h3>Prices and availability</h3>
-<p>Prices, stock, delivery details and ratings shown here are for guidance only. They may be out of date. Always check the final price and details on Amazon before you pay.</p>
+<p>Prices, stock, delivery details and ratings shown here are for guidance only. They are set by each store and can change at any time, so they may be out of date. Always check the final price and details on the store's page before you pay.</p>
 <h3>Affiliate disclosure</h3>
-<p>As an Amazon Associate I earn from qualifying purchases.</p>
+<p>As an Amazon Associate I earn from qualifying purchases. Some other links on this website are also affiliate links. The owner may earn a commission from qualifying purchases at no extra cost to you.</p>
 <h3>Third-party stores and products</h3>
-<p>Store names, logos and product names belong to their owners and are used only to identify the stores and products. This website is not owned by, or officially connected with, Amazon. I do not make or inspect the products and cannot guarantee their quality, safety or suitability.</p>
+<p>Store names, logos and product names belong to their owners and are used only to identify the stores and products. This website is not owned by, or officially connected with, Amazon, noon, eBay or any other store listed. I do not make or inspect the products and cannot guarantee their quality, safety or suitability.</p>
 <h3>Acceptable use</h3>
 <p>Please do not misuse this website, try to break or overload it, or copy its content in bulk with automated tools.</p>
 <h3>Copyright</h3>
@@ -237,7 +237,11 @@ dialog:not([open]) + *{}
 /* ============ SETTINGS: edit these ============ */
 // Your affiliate IDs. Leave "" until you have them. Amazon needs one ID per country site.
 const AFF = {
-  amazon: { "ae":"mypicksshop0d-21" }
+  amazon: { "ae":"mypicksshop0d-21" /* add other Amazon countries only after you join their Associates programs, e.g. "com":"yourtag-20", "co.uk":"yourtag-21" */ },
+  ebay: "",        // e.g. "mkcid=1&campid=YOURID"
+  noon: "",        // e.g. "utm_source=yourid"
+  aliexpress: "", flipkart: "", daraz: "", jumia: "", shopee: "", lazada: "", walmart: "",
+  target: "", bestbuy: "", etsy: "", ikea: "", mercadolibre: "", zalando: "", asos: "", allegro: "", rakuten: "", coupang: ""
 };
 // Prices you type are shown only to visitors from the matching country.
 // An offer with no "country" is treated as a UAE (AE) offer. Use country:"*" to show an offer everywhere.
@@ -267,7 +271,7 @@ const AS = () => ({name:"ASOS", fn:q=>add("asos","https://www.asos.com/search/?q
 const AL = () => ({name:"Allegro", fn:q=>add("allegro","https://allegro.pl/listing?string="+enc(q))});
 const RK = () => ({name:"Rakuten", fn:q=>add("rakuten","https://search.rakuten.co.jp/search/mall/"+enc(q)+"/")});
 const CP = () => ({name:"Coupang", fn:q=>add("coupang","https://www.coupang.com/np/search?q="+enc(q))});
-const GLOBAL = () => [A("com")];
+const GLOBAL = () => [A("com"), E("com"), ET(), AX()];
 
 const COUNTRIES = {
   WW:{n:"Other / Worldwide", s:GLOBAL()},
@@ -314,9 +318,13 @@ const COUNTRIES = {
   KE:{n:"Kenya", s:[JU("co.ke"), A("com"), AX()]},
   MA:{n:"Morocco", s:[JU("ma"), A("com"), AX()]}
 };
-// Amazon is the only featured store, using the configured UAE tracking ID.
+// the 20 featured stores (home pages), shown as a strip on the page
 const FEATURED = [
- ["Amazon","https://www.amazon.ae/?tag=mypicksshop0d-21"]
+ ["Amazon","https://www.amazon.com"],["eBay","https://www.ebay.com"],["Walmart","https://www.walmart.com"],["Target","https://www.target.com"],
+ ["Best Buy","https://www.bestbuy.com"],["Etsy","https://www.etsy.com"],["IKEA","https://www.ikea.com"],["Mercado Libre","https://www.mercadolibre.com"],
+ ["Zalando","https://www.zalando.co.uk"],["ASOS","https://www.asos.com"],["Allegro","https://allegro.pl"],["noon","https://www.noon.com"],
+ ["Jumia","https://www.jumia.com"],["AliExpress","https://www.aliexpress.com"],["Flipkart","https://www.flipkart.com"],["Rakuten","https://www.rakuten.co.jp"],
+ ["Shopee","https://shopee.com"],["Lazada","https://www.lazada.com"],["Daraz","https://www.daraz.com"],["Coupang","https://www.coupang.com"]
 ];
 
 /* ----- Products -----
@@ -371,10 +379,6 @@ const PRODUCTS = [
   {name:"Electric Toothbrush", category:"Beauty", emoji:"🪥", color:"#cdeff0", desc:"Rechargeable brush with timer.", search:"electric toothbrush", offers:[]},
   {name:"Perfume Gift Set", category:"Perfume", emoji:"✨", color:"#fbd9e6", desc:"Gift box with fragrance bottles for him or her.", search:"perfume gift set", offers:[]}
 ];
-// Amazon-only: remove any legacy offers for other retailers.
-PRODUCTS.forEach(product => {
-  product.offers = product.offers.filter(offer => String(offer.store).toLowerCase().startsWith("amazon."));
-});
 /* ============ end of settings ============ */
 
 const $=id=>document.getElementById(id);
@@ -389,18 +393,13 @@ document.querySelectorAll("dialog").forEach(d=>{
   }
 });
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-// Only show Amazon marketplaces that have a configured Associates tracking ID.
-Object.values(COUNTRIES).forEach(country => {
-  country.s = country.s.filter(store => store.name.startsWith("Amazon.") && Boolean(AFF.amazon[store.name.slice("Amazon.".length)]));
-});
-const supportedCountries = Object.entries(COUNTRIES).filter(([key, country]) => country.s.length > 0);
-let C="AE", cat="All";
+let C="WW", cat="All";
 
 // pick the visitor's country from their browser language, or from their saved choice
 function detect(){
-  try{const s=localStorage.getItem("mp_country"); if(s&&COUNTRIES[s]&&COUNTRIES[s].s.length) return s}catch(e){}
-  for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(COUNTRIES[r]&&COUNTRIES[r].s.length) return r}
-  return supportedCountries.length ? supportedCountries[0][0] : "AE";
+  try{const s=localStorage.getItem("mp_country"); if(s&&COUNTRIES[s]) return s}catch(e){}
+  for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(COUNTRIES[r]) return r}
+  return "WW";
 }
 const priced=p=>p.offers.filter(o=>(o.country||DEFAULT_COUNTRY)===C||o.country==="*");
 const cur=o=>o.currency||DEFAULT_CURRENCY;
@@ -441,7 +440,7 @@ function showProduct(i){
    <a class="buy" href="${esc(s.fn(q(p)))}" target="_blank" rel="sponsored noopener noreferrer">View on ${esc(s.name)}</a></div>`).join('')+`</div></div>`;
   $("dlg").showModal();
 }
-$("country").innerHTML=supportedCountries.sort((a,b)=>a[1].n.localeCompare(b[1].n)).map(([k,v])=>`<option value="${k}">${esc(v.n)}</option>`).join('');
+$("country").innerHTML=Object.entries(COUNTRIES).sort((a,b)=>a[0]==="WW"?-1:b[0]==="WW"?1:a[1].n.localeCompare(b[1].n)).map(([k,v])=>`<option value="${k}">${esc(v.n)}</option>`).join('');
 C=detect(); $("country").value=C;
 $("country").addEventListener("change",e=>{C=e.target.value;try{localStorage.setItem("mp_country",C)}catch(x){};draw()});
 $("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){cat=b.dataset.c;drawChips();draw()}});
