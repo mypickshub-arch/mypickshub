@@ -141,7 +141,7 @@ dialog:not([open]) + *{}
 <main class="wrap">
   <section class="hero">
     <h1>Shop the world, one tap away.</h1>
-    <p>Pick your country and search Amazon in the relevant marketplace.</p>
+    <p>We detect your country when possible, and you can change it anytime. Product links open the matching Amazon marketplace where available.</p>
     <ul class="badges"><li>Links to Amazon marketplaces</li><li>Pay safely on the store's own checkout</li><li>Delivery and returns handled by the store</li><li>Amazon marketplace links worldwide</li></ul>
     <p style="display:none"></p>
   </section>
@@ -159,7 +159,7 @@ dialog:not([open]) + *{}
 
 <section class="trust" id="stores"><div class="wrap">
   <h2>Shop Amazon around the world</h2>
-  <p>Choose your country to search Amazon, or visit Amazon directly.</p>
+  <p>Choose your country to search the matching Amazon marketplace, or visit Amazon directly.</p>
   <div class="storelist" id="storelist"></div>
 </div></section>
 
@@ -274,15 +274,15 @@ const COUNTRIES = {
   AE:{n:"United Arab Emirates", s:[A("ae")]},
   SA:{n:"Saudi Arabia", s:[A("sa")]},
   EG:{n:"Egypt", s:[A("eg")]},
-  QA:{n:"Qatar", s:[A("com")]},
-  KW:{n:"Kuwait", s:[A("com")]},
-  BH:{n:"Bahrain", s:[A("com")]},
-  OM:{n:"Oman", s:[A("com")]},
+  QA:{n:"Qatar", s:[A("ae")]},
+  KW:{n:"Kuwait", s:[A("ae")]},
+  BH:{n:"Bahrain", s:[A("ae")]},
+  OM:{n:"Oman", s:[A("ae")]},
   IN:{n:"India", s:[A("in")]},
-  PK:{n:"Pakistan", s:[A("com")]},
-  BD:{n:"Bangladesh", s:[A("com")]},
-  LK:{n:"Sri Lanka", s:[A("com")]},
-  NP:{n:"Nepal", s:[A("com")]},
+  PK:{n:"Pakistan", s:[A("ae")]},
+  BD:{n:"Bangladesh", s:[A("in")]},
+  LK:{n:"Sri Lanka", s:[A("in")]},
+  NP:{n:"Nepal", s:[A("in")]},
   US:{n:"United States", s:[A("com")]},
   CA:{n:"Canada", s:[A("ca")]},
   GB:{n:"United Kingdom", s:[A("co.uk")]},
@@ -297,22 +297,22 @@ const COUNTRIES = {
   TR:{n:"Turkey", s:[A("com.tr")]},
   AU:{n:"Australia", s:[A("com.au")]},
   SG:{n:"Singapore", s:[A("sg")]},
-  MY:{n:"Malaysia", s:[A("com")]},
-  PH:{n:"Philippines", s:[A("com")]},
-  ID:{n:"Indonesia", s:[A("com")]},
-  TH:{n:"Thailand", s:[A("com")]},
-  VN:{n:"Vietnam", s:[A("com")]},
+  MY:{n:"Malaysia", s:[A("sg")]},
+  PH:{n:"Philippines", s:[A("sg")]},
+  ID:{n:"Indonesia", s:[A("sg")]},
+  TH:{n:"Thailand", s:[A("sg")]},
+  VN:{n:"Vietnam", s:[A("sg")]},
   JP:{n:"Japan", s:[A("co.jp")]},
-  KR:{n:"South Korea", s:[A("com")]},
+  KR:{n:"South Korea", s:[A("co.jp")]},
   BR:{n:"Brazil", s:[A("com.br")]},
   MX:{n:"Mexico", s:[A("com.mx")]},
-  AR:{n:"Argentina", s:[A("com")]},
-  CO:{n:"Colombia", s:[A("com")]},
-  CL:{n:"Chile", s:[A("com")]},
+  AR:{n:"Argentina", s:[A("com.mx")]},
+  CO:{n:"Colombia", s:[A("com.mx")]},
+  CL:{n:"Chile", s:[A("com.mx")]},
   ZA:{n:"South Africa", s:[A("co.za")]},
-  NG:{n:"Nigeria", s:[A("com")]},
-  KE:{n:"Kenya", s:[A("com")]},
-  MA:{n:"Morocco", s:[A("com")]}
+  NG:{n:"Nigeria", s:[A("co.uk")]},
+  KE:{n:"Kenya", s:[A("co.uk")]},
+  MA:{n:"Morocco", s:[A("fr")]}
 };
 // the 20 featured stores (home pages), shown as a strip on the page
 const FEATURED = [["Amazon","https://www.amazon.com"]];
@@ -384,11 +384,26 @@ document.querySelectorAll("dialog").forEach(d=>{
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let C="WW", cat="All";
 
-// pick the visitor's country from their browser language, or from their saved choice
+// Prefer a visitor's saved manual choice, then browser language.
 function detect(){
-  try{const s=localStorage.getItem("mp_country"); if(s&&COUNTRIES[s]) return s}catch(e){}
+  try{const s=localStorage.getItem("mp_country_manual"); if(s&&COUNTRIES[s]) return s}catch(e){}
   for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(COUNTRIES[r]) return r}
   return "WW";
+}
+// Detect country by IP if the visitor has not selected one manually.
+// If lookup fails, browser-language detection and the country selector still work.
+async function detectByIP(){
+  try{
+    if(localStorage.getItem("mp_country_manual")) return;
+    const res=await fetch("https://ipapi.co/country/",{headers:{Accept:"text/plain"},cache:"no-store"});
+    if(!res.ok) return;
+    const code=(await res.text()).trim().toUpperCase();
+    if(COUNTRIES[code]&&!localStorage.getItem("mp_country_manual")){
+      C=code;
+      $("country").value=C;
+      draw();
+    }
+  }catch(e){}
 }
 const priced=p=>p.offers.filter(o=>(o.country||DEFAULT_COUNTRY)===C||o.country==="*");
 const cur=o=>o.currency||DEFAULT_CURRENCY;
@@ -431,7 +446,8 @@ function showProduct(i){
 }
 $("country").innerHTML=Object.entries(COUNTRIES).sort((a,b)=>a[0]==="WW"?-1:b[0]==="WW"?1:a[1].n.localeCompare(b[1].n)).map(([k,v])=>`<option value="${k}">${esc(v.n)}</option>`).join('');
 C=detect(); $("country").value=C;
-$("country").addEventListener("change",e=>{C=e.target.value;try{localStorage.setItem("mp_country",C)}catch(x){};draw()});
+$("country").addEventListener("change",e=>{C=e.target.value;try{localStorage.setItem("mp_country_manual",C)}catch(x){};draw()});
+detectByIP();
 $("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){cat=b.dataset.c;drawChips();draw()}});
 $("grid").addEventListener("click",e=>{const b=e.target.closest(".card");if(b)showProduct(+b.dataset.i)});
 $("q").addEventListener("input",draw); $("sort").addEventListener("change",draw);
