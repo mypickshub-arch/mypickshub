@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>My Picks Store - Shop the world, one tap away</title>
-<meta name="description" content="My Picks Store: compare prices on electronics, gaming, fashion and home products from stores around the world, and buy from the store you trust.">
+<meta name="description" content="My Picks Store helps you find products on Amazon marketplaces around the world.">
 <meta property="og:title" content="My Picks Store">
 <meta property="og:description" content="My Picks Store: compare prices on electronics, gaming, fashion and home products from stores around the world, and buy from the store you trust.">
 <meta property="og:type" content="website">
@@ -141,8 +141,8 @@ dialog:not([open]) + *{}
 <main class="wrap">
   <section class="hero">
     <h1>Shop the world, one tap away.</h1>
-    <p>Pick your country, compare trusted stores, and buy safely on their site.</p>
-    <ul class="badges"><li>Links to trusted, well-known stores</li><li>Pay safely on the store's own checkout</li><li>Delivery and returns handled by the store</li><li>Available for 30+ countries</li></ul>
+    <p>Pick your country and search Amazon in the relevant marketplace.</p>
+    <ul class="badges"><li>Links to Amazon marketplaces</li><li>Pay safely on the store's own checkout</li><li>Delivery and returns handled by the store</li><li>Amazon marketplace links worldwide</li></ul>
     <p style="display:none"></p>
   </section>
   <div class="tools" style="margin-bottom:6px"><div class="meta" id="note"></div></div>
@@ -158,16 +158,16 @@ dialog:not([open]) + *{}
 </main>
 
 <section class="trust" id="stores"><div class="wrap">
-  <h2>Top trusted stores around the world</h2>
-  <p>Our product pages link to these big stores. You can also visit them directly.</p>
+  <h2>Shop Amazon around the world</h2>
+  <p>Choose your country to search Amazon, or visit Amazon directly.</p>
   <div class="storelist" id="storelist"></div>
 </div></section>
 
 <section class="about" id="about"><div class="wrap">
   <h2>About My Picks Store</h2>
-  <p>Welcome to My Picks Store. I hand-pick popular products in fashion, nightwear, innerwear, perfume, wallets, bikes and scooters, gaming, electronics, home, fitness, beauty and more, so you don't have to spend hours searching.</p>
-  <p>For each product, you can see which stores sell it and what they charge. When you're ready, tap Buy now and you'll go straight to the store you choose, such as Amazon, noon, eBay, AliExpress, Walmart, Zalando or Rakuten, depending on your country. You pay, and get delivery and returns, directly with that store.</p>
-  <p>Prices and stock are set by each store and can change, so always check the final price on the store's page. As an Amazon Associate I earn from qualifying purchases. Some other links are affiliate links too, which means I may earn a small commission at no extra cost to you.</p>
+  <p>Welcome to My Picks Store. Browse product ideas across fashion, electronics, home, fitness, beauty and more, then search Amazon for products available in your country.</p>
+  <p>For each product, use the Amazon search link for your selected country. When you're ready, tap the Amazon link to continue shopping directly on Amazon. You pay, and get delivery and returns, directly with that store.</p>
+  <p>Prices and stock are set by each store and can change, so always check the final price on the store's page. As an Amazon Associate I earn from qualifying purchases. </p>
   </div></section>
 
 <dialog id="dlg" aria-label="Product details">
@@ -186,9 +186,9 @@ dialog:not([open]) + *{}
 <h3>Fonts</h3>
 <p>This website loads its fonts from Google Fonts. When a page loads, Google may receive your IP address and browser details, as with any website that uses Google Fonts. See Google's privacy policy for details.</p>
 <h3>Links to other stores</h3>
-<p>When you click Buy now or View on a store, you leave this website and go to a store such as Amazon, noon, eBay or others. Those stores have their own privacy policies and collect their own data, including cookies. This website does not control them and is not responsible for them. Please read their policies.</p>
+<p>When you click an Amazon link, you leave this website and go to the relevant Amazon marketplace. Those stores have their own privacy policies and collect their own data, including cookies. This website does not control them and is not responsible for them. Please read their policies.</p>
 <h3>Affiliate links</h3>
-<p>As an Amazon Associate I earn from qualifying purchases. Some other links on this website are also affiliate links. If you buy through them, the owner of this website may earn a commission at no extra cost to you. A store may use cookies to know the visit came from this website.</p>
+<p>As an Amazon Associate I earn from qualifying purchases. Amazon may use cookies to attribute qualifying purchases to this website.</p>
 <h3>Analytics and advertising</h3>
 <p>This website does not currently use analytics or advertising tools. If that changes, this policy will be updated before they are used.</p>
 <h3>Children</h3>
@@ -211,9 +211,9 @@ dialog:not([open]) + *{}
 <h3>Prices and availability</h3>
 <p>Prices, stock, delivery details and ratings shown here are for guidance only. They are set by each store and can change at any time, so they may be out of date. Always check the final price and details on the store's page before you pay.</p>
 <h3>Affiliate disclosure</h3>
-<p>As an Amazon Associate I earn from qualifying purchases. Some other links on this website are also affiliate links. The owner may earn a commission from qualifying purchases at no extra cost to you.</p>
+<p>As an Amazon Associate I earn from qualifying purchases. </p>
 <h3>Third-party stores and products</h3>
-<p>Store names, logos and product names belong to their owners and are used only to identify the stores and products. This website is not owned by, or officially connected with, Amazon, noon, eBay or any other store listed. I do not make or inspect the products and cannot guarantee their quality, safety or suitability.</p>
+<p>Amazon and its logos are trademarks of Amazon or its affiliates. This website is not owned by, or officially connected with, Amazon. I do not make or inspect the products and cannot guarantee their quality, safety or suitability.</p>
 <h3>Acceptable use</h3>
 <p>Please do not misuse this website, try to break or overload it, or copy its content in bulk with automated tools.</p>
 <h3>Copyright</h3>
@@ -237,11 +237,7 @@ dialog:not([open]) + *{}
 /* ============ SETTINGS: edit these ============ */
 // Your affiliate IDs. Leave "" until you have them. Amazon needs one ID per country site.
 const AFF = {
-  amazon: { "ae":"mypicksshop0d-21" /* add other Amazon countries only after you join their Associates programs, e.g. "com":"yourtag-20", "co.uk":"yourtag-21" */ },
-  ebay: "",        // e.g. "mkcid=1&campid=YOURID"
-  noon: "",        // e.g. "utm_source=yourid"
-  aliexpress: "", flipkart: "", daraz: "", jumia: "", shopee: "", lazada: "", walmart: "",
-  target: "", bestbuy: "", etsy: "", ikea: "", mercadolibre: "", zalando: "", asos: "", allegro: "", rakuten: "", coupang: ""
+  amazon: { "ae":"mypicksshop0d-21" /* Add other marketplace IDs only after joining those Amazon Associates programs. */ }
 };
 // Prices you type are shown only to visitors from the matching country.
 // An offer with no "country" is treated as a UAE (AE) offer. Use country:"*" to show an offer everywhere.
@@ -274,58 +270,52 @@ const CP = () => ({name:"Coupang", fn:q=>add("coupang","https://www.coupang.com/
 const GLOBAL = () => [A("com"), E("com"), ET(), AX()];
 
 const COUNTRIES = {
-  WW:{n:"Other / Worldwide", s:GLOBAL()},
-  AE:{n:"United Arab Emirates", s:[A("ae"), NO("uae-en"), IK("ae","en"), E("com"), AX()]},
-  SA:{n:"Saudi Arabia", s:[A("sa"), NO("saudi-en"), IK("sa","en"), E("com"), AX()]},
-  EG:{n:"Egypt", s:[A("eg"), NO("egypt-en"), JU("com.eg"), IK("eg","en"), E("com"), AX()]},
-  QA:{n:"Qatar", s:[A("com"), IK("qa","en"), E("com"), ET(), AX()]},
-  KW:{n:"Kuwait", s:[A("com"), IK("kw","en"), E("com"), ET(), AX()]},
-  BH:{n:"Bahrain", s:[A("com"), IK("bh","en"), E("com"), ET(), AX()]},
-  OM:{n:"Oman", s:GLOBAL()},
-  IN:{n:"India", s:[A("in"), FK(), IK("in","en")]},
-  PK:{n:"Pakistan", s:[DZ("pk"), A("com"), E("com"), ET(), AX()]},
-  BD:{n:"Bangladesh", s:[DZ("com.bd"), A("com"), E("com"), ET(), AX()]},
-  LK:{n:"Sri Lanka", s:[DZ("lk"), A("com"), E("com"), AX()]},
-  NP:{n:"Nepal", s:[DZ("com.np"), A("com"), AX()]},
-  US:{n:"United States", s:[A("com"), E("com"), WM("com"), TG(), BB("com"), ET(), IK("us","en"), AS(), AX()]},
-  CA:{n:"Canada", s:[A("ca"), E("ca"), WM("ca"), BB("ca"), ET(), IK("ca","en"), AX()]},
-  GB:{n:"United Kingdom", s:[A("co.uk"), E("co.uk"), AS(), ZA("co.uk","catalog"), ET(), IK("gb","en"), AX()]},
-  DE:{n:"Germany", s:[A("de"), E("de"), ZA("de","katalog"), AS(), ET(), IK("de","de"), AX()]},
-  FR:{n:"France", s:[A("fr"), E("fr"), ZA("fr","catalogue"), AS(), ET(), IK("fr","fr"), AX()]},
-  IT:{n:"Italy", s:[A("it"), E("it"), ZA("it","catalogo"), AS(), ET(), IK("it","it"), AX()]},
-  ES:{n:"Spain", s:[A("es"), E("es"), ZA("es","catalogo"), AS(), ET(), IK("es","es"), AX()]},
-  NL:{n:"Netherlands", s:[A("nl"), E("nl"), ZA("nl","catalogus"), AS(), ET(), IK("nl","nl"), AX()]},
-  BE:{n:"Belgium", s:[A("com.be"), E("com"), AS(), ET(), AX()]},
-  SE:{n:"Sweden", s:[A("se"), ZA("se","katalog"), E("com"), AS(), ET(), IK("se","sv"), AX()]},
-  PL:{n:"Poland", s:[A("pl"), AL(), ZA("pl","katalog"), E("pl"), AS(), ET(), IK("pl","pl"), AX()]},
-  TR:{n:"Turkey", s:[A("com.tr"), AS(), ET(), AX()]},
-  AU:{n:"Australia", s:[A("com.au"), E("com.au"), AS(), ET(), IK("au","en"), AX()]},
-  SG:{n:"Singapore", s:[A("sg"), SH("sg"), LZ("sg"), IK("sg","en"), ET(), AX()]},
-  MY:{n:"Malaysia", s:[SH("com.my"), LZ("com.my"), IK("my","en"), ET(), AX()]},
-  PH:{n:"Philippines", s:[SH("ph"), LZ("com.ph"), IK("ph","en"), ET(), AX()]},
-  ID:{n:"Indonesia", s:[SH("co.id"), LZ("co.id"), IK("id","en"), AX()]},
-  TH:{n:"Thailand", s:[SH("co.th"), LZ("co.th"), IK("th","en"), AX()]},
-  VN:{n:"Vietnam", s:[SH("vn"), LZ("vn"), AX()]},
-  JP:{n:"Japan", s:[RK(), A("co.jp"), IK("jp","ja"), ET(), E("com"), AX()]},
-  KR:{n:"South Korea", s:[CP(), E("com"), ET(), AX()]},
-  BR:{n:"Brazil", s:[ML("com.br","Mercado Livre"), A("com.br"), AX()]},
-  MX:{n:"Mexico", s:[ML("com.mx"), A("com.mx"), E("com"), AX()]},
-  AR:{n:"Argentina", s:[ML("com.ar"), A("com"), AX()]},
-  CO:{n:"Colombia", s:[ML("com.co"), A("com"), AX()]},
-  CL:{n:"Chile", s:[ML("cl"), A("com"), AX()]},
-  ZA:{n:"South Africa", s:[A("co.za"), E("com"), ET(), AX()]},
-  NG:{n:"Nigeria", s:[JU("com.ng"), A("com"), AX()]},
-  KE:{n:"Kenya", s:[JU("co.ke"), A("com"), AX()]},
-  MA:{n:"Morocco", s:[JU("ma"), A("com"), AX()]}
+  WW:{n:"Other / Worldwide", s:[A("com")]},
+  AE:{n:"United Arab Emirates", s:[A("ae")]},
+  SA:{n:"Saudi Arabia", s:[A("sa")]},
+  EG:{n:"Egypt", s:[A("eg")]},
+  QA:{n:"Qatar", s:[A("com")]},
+  KW:{n:"Kuwait", s:[A("com")]},
+  BH:{n:"Bahrain", s:[A("com")]},
+  OM:{n:"Oman", s:[A("com")]},
+  IN:{n:"India", s:[A("in")]},
+  PK:{n:"Pakistan", s:[A("com")]},
+  BD:{n:"Bangladesh", s:[A("com")]},
+  LK:{n:"Sri Lanka", s:[A("com")]},
+  NP:{n:"Nepal", s:[A("com")]},
+  US:{n:"United States", s:[A("com")]},
+  CA:{n:"Canada", s:[A("ca")]},
+  GB:{n:"United Kingdom", s:[A("co.uk")]},
+  DE:{n:"Germany", s:[A("de")]},
+  FR:{n:"France", s:[A("fr")]},
+  IT:{n:"Italy", s:[A("it")]},
+  ES:{n:"Spain", s:[A("es")]},
+  NL:{n:"Netherlands", s:[A("nl")]},
+  BE:{n:"Belgium", s:[A("com.be")]},
+  SE:{n:"Sweden", s:[A("se")]},
+  PL:{n:"Poland", s:[A("pl")]},
+  TR:{n:"Turkey", s:[A("com.tr")]},
+  AU:{n:"Australia", s:[A("com.au")]},
+  SG:{n:"Singapore", s:[A("sg")]},
+  MY:{n:"Malaysia", s:[A("com")]},
+  PH:{n:"Philippines", s:[A("com")]},
+  ID:{n:"Indonesia", s:[A("com")]},
+  TH:{n:"Thailand", s:[A("com")]},
+  VN:{n:"Vietnam", s:[A("com")]},
+  JP:{n:"Japan", s:[A("co.jp")]},
+  KR:{n:"South Korea", s:[A("com")]},
+  BR:{n:"Brazil", s:[A("com.br")]},
+  MX:{n:"Mexico", s:[A("com.mx")]},
+  AR:{n:"Argentina", s:[A("com")]},
+  CO:{n:"Colombia", s:[A("com")]},
+  CL:{n:"Chile", s:[A("com")]},
+  ZA:{n:"South Africa", s:[A("co.za")]},
+  NG:{n:"Nigeria", s:[A("com")]},
+  KE:{n:"Kenya", s:[A("com")]},
+  MA:{n:"Morocco", s:[A("com")]}
 };
 // the 20 featured stores (home pages), shown as a strip on the page
-const FEATURED = [
- ["Amazon","https://www.amazon.com"],["eBay","https://www.ebay.com"],["Walmart","https://www.walmart.com"],["Target","https://www.target.com"],
- ["Best Buy","https://www.bestbuy.com"],["Etsy","https://www.etsy.com"],["IKEA","https://www.ikea.com"],["Mercado Libre","https://www.mercadolibre.com"],
- ["Zalando","https://www.zalando.co.uk"],["ASOS","https://www.asos.com"],["Allegro","https://allegro.pl"],["noon","https://www.noon.com"],
- ["Jumia","https://www.jumia.com"],["AliExpress","https://www.aliexpress.com"],["Flipkart","https://www.flipkart.com"],["Rakuten","https://www.rakuten.co.jp"],
- ["Shopee","https://shopee.com"],["Lazada","https://www.lazada.com"],["Daraz","https://www.daraz.com"],["Coupang","https://www.coupang.com"]
-];
+const FEATURED = [["Amazon","https://www.amazon.com"]];
 
 /* ----- Products -----
    One block per product. "search" = words used to search the stores.
@@ -347,25 +337,24 @@ const PRODUCTS = [
   {name:"Mountain Bicycle", category:"Bikes & Scooters", emoji:"🚲", color:"#d7efe3", desc:"Geared bicycle for city rides and trails.", search:"mountain bicycle", offers:[]},
   {name:"Electric Scooter", category:"Bikes & Scooters", emoji:"🛴", color:"#fdeab0", desc:"Foldable e-scooter for short city trips.", search:"electric scooter adult", offers:[]},
   {name:"Nintendo Switch Lite", category:"Gaming", emoji:"🎮", color:"#cdeff0", rating:4.7, reviews:"28K", desc:"Handheld game console with a 5.5-inch screen.", search:"Nintendo Switch Lite",
-   offers:[{store:"Amazon.ae",price:690,note:"Free delivery"},{store:"noon",price:722,note:"Free delivery"},{store:"eBay",price:712,note:"Delivery extra"}]},
+   offers:[]},
   {name:"Wireless Game Controller", category:"Gaming", emoji:"🕹️", color:"#e3e8ff", rating:4.5, reviews:"3.2K", desc:"Bluetooth controller for console and PC.", search:"wireless game controller",
-   offers:[{store:"noon",price:85,note:"Free delivery"},{store:"Amazon.ae",price:92,note:"Free delivery"}]},
+   offers:[]},
   {name:"Laptop Stand", category:"Office", emoji:"💻", color:"#dbe6ff", rating:4.6, reviews:"9.4K", desc:"Adjustable aluminum stand that lifts your screen to eye level.", search:"aluminum laptop stand",
-   offers:[{store:"Amazon.ae",price:89,note:"Free delivery"},{store:"noon",price:95,note:"Free delivery"},{store:"eBay",price:79,note:"Delivery extra"}]},
+   offers:[]},
   {name:"Wireless Earbuds", category:"Audio", emoji:"🎧", color:"#f9d9d3", rating:4.4, reviews:"12K", desc:"Bluetooth earbuds with charging case and noise reduction.", search:"wireless earbuds",
-   offers:[{store:"noon",price:129,note:"Free delivery"},{store:"Amazon.ae",price:135,note:"Free delivery"}]},
+   offers:[]},
   {name:"Running Shoes", category:"Fashion", emoji:"👟", color:"#fdeab0", rating:4.3, reviews:"1.8K", desc:"Lightweight cushioned shoes for daily runs.", search:"men running shoes",
-   offers:[{store:"noon",price:249,note:"14-day returns"},{store:"Amazon.ae",price:265,note:"Free delivery"},{store:"eBay",price:230,note:"Delivery extra"}]},
+   offers:[]},
   {name:"Smart Watch", category:"Audio", emoji:"⌚", color:"#e8dcf7", rating:4.2, reviews:"6.1K", desc:"Tracks steps, sleep and heart rate. Shows phone alerts.", search:"smart watch",
-   offers:[{store:"Amazon.ae",price:199,note:"Free delivery"},{store:"noon",price:189,note:"Free delivery"}]},
+   offers:[]},
   {name:"Travel Backpack", category:"Fashion", emoji:"🎒", color:"#d3ecf2", rating:4.6, reviews:"4.7K", desc:"Padded laptop pocket and water-resistant fabric.", search:"travel laptop backpack",
-   offers:[{store:"Amazon.ae",price:165,note:"Free delivery"},{store:"noon",price:159,note:"Free delivery"}]},
+   offers:[]},
   {name:"LED Desk Lamp", category:"Office", emoji:"💡", color:"#fbe3c8", rating:4.5, reviews:"2.9K", desc:"Dimmable lamp with three color temperatures.", search:"LED desk lamp",
-   offers:[{store:"noon",price:99,note:"Free delivery"},{store:"Amazon.ae",price:105,note:"Free delivery"},{store:"eBay",price:92,note:"Delivery extra"}]},
+   offers:[]},
   {name:"Phone Tripod", category:"Office", emoji:"📱", color:"#d7efe3", rating:4.4, reviews:"5.3K", desc:"Compact, bendable legs and a remote shutter for filming.", search:"phone tripod",
-   offers:[{store:"Amazon.ae",price:79,note:"Free delivery"},{store:"noon",price:75,note:"Free delivery"}]},
-  {name:"Insulated Water Bottle", category:"Home", emoji:"🧴", color:"#e7e4d8", rating:4.7, reviews:"15K", desc:"Keeps drinks cold for a day or hot for hours.", search:"insulated water bottle", offers:[
-    {store:"noon",price:89,note:"Free delivery"},{store:"Amazon.ae",price:95,note:"Free delivery"}]},
+   offers:[]},
+  {name:"Insulated Water Bottle", category:"Home", emoji:"🧴", color:"#e7e4d8", rating:4.7, reviews:"15K", desc:"Keeps drinks cold for a day or hot for hours.", search:"insulated water bottle", offers:[]},
   {name:"Power Bank 20000mAh", category:"Electronics", emoji:"🔋", color:"#fdeab0", desc:"Portable charger for phones and tablets.", search:"power bank 20000mAh", offers:[]},
   {name:"Bluetooth Speaker", category:"Audio", emoji:"🔊", color:"#e3e8ff", desc:"Portable wireless speaker for home and travel.", search:"portable bluetooth speaker", offers:[]},
   {name:"Mechanical Keyboard", category:"Office", emoji:"⌨️", color:"#dbe6ff", desc:"Keyboard with tactile keys for typing and gaming.", search:"mechanical keyboard", offers:[]},
