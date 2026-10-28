@@ -167,8 +167,8 @@ dialog:not([open]) + *{}
 <section class="about" id="about"><div class="wrap">
   <h2>About My Picks Store</h2>
   <p>Welcome to My Picks Store. I hand-pick popular products in fashion, nightwear, innerwear, perfume, wallets, bikes and scooters, gaming, electronics, home, fitness, beauty and more, so you don't have to spend hours searching.</p>
-  <p>For each product, you can see which stores sell it and what they charge. When you're ready, tap Buy now and you'll go straight to the store you choose, such as Amazon, noon, eBay, AliExpress, Walmart, Zalando or Rakuten, depending on your country. You pay, and get delivery and returns, directly with that store.</p>
-  <p>Prices and stock are set by each store and can change, so always check the final price on the store's page. As an Amazon Associate I earn from qualifying purchases. Some other links are affiliate links too, which means I may earn a small commission at no extra cost to you.</p>
+  <p>Browse products and use the Amazon link to view available items on Amazon. Purchases, delivery and returns are handled directly by Amazon.</p>
+  <p>Amazon prices and stock can change, so always check the final price on Amazon. As an Amazon Associate I earn from qualifying purchases.</p>
   </div></section>
 
 <dialog id="dlg" aria-label="Product details">
@@ -187,9 +187,9 @@ dialog:not([open]) + *{}
 <h3>Fonts</h3>
 <p>This website loads its fonts from Google Fonts. When a page loads, Google may receive your IP address and browser details, as with any website that uses Google Fonts. See Google's privacy policy for details.</p>
 <h3>Links to other stores</h3>
-<p>When you click Buy now or View on a store, you leave this website and go to a store such as Amazon, noon, eBay or others. Those stores have their own privacy policies and collect their own data, including cookies. This website does not control them and is not responsible for them. Please read their policies.</p>
+<p>When you click an Amazon link, you leave this website and go to Amazon. Amazon has its own privacy policy and may collect data such as cookies. This website does not control Amazon’s policies or services. Please read Amazon’s policies.</p>
 <h3>Affiliate links</h3>
-<p>As an Amazon Associate I earn from qualifying purchases. Some other links on this website are also affiliate links. If you buy through them, the owner of this website may earn a commission at no extra cost to you. A store may use cookies to know the visit came from this website.</p>
+<p>As an Amazon Associate I earn from qualifying purchases.</p>
 <h3>Analytics and advertising</h3>
 <p>This website does not currently use analytics or advertising tools. If that changes, this policy will be updated before they are used.</p>
 <h3>Children</h3>
@@ -212,7 +212,7 @@ dialog:not([open]) + *{}
 <h3>Prices and availability</h3>
 <p>Prices, stock, delivery details and ratings shown here are for guidance only. They are set by each store and can change at any time, so they may be out of date. Always check the final price and details on the store's page before you pay.</p>
 <h3>Affiliate disclosure</h3>
-<p>As an Amazon Associate I earn from qualifying purchases. Some other links on this website are also affiliate links. The owner may earn a commission from qualifying purchases at no extra cost to you.</p>
+<p>As an Amazon Associate I earn from qualifying purchases.</p>
 <h3>Third-party stores and products</h3>
 <p>Store names, logos and product names belong to their owners and are used only to identify the stores and products. This website is not owned by, or officially connected with, Amazon, noon, eBay or any other store listed. I do not make or inspect the products and cannot guarantee their quality, safety or suitability.</p>
 <h3>Acceptable use</h3>
@@ -324,19 +324,15 @@ const COUNTRIES = {
 // This prevents visitors from being sent to untagged Amazon search links.
 Object.values(COUNTRIES).forEach(country => {
   country.s = country.s.filter(store => {
-    if (!store.name.startsWith("Amazon.")) return true;
+    if (!store.name.startsWith("Amazon.")) return false;
     const marketplace = store.name.slice("Amazon.".length);
     return Boolean(AFF.amazon[marketplace]);
   });
 });
 
-// the 20 featured stores (home pages), shown as a strip on the page
+// Amazon store link shown on the home page
 const FEATURED = [
- ["Amazon","https://www.amazon.ae/?tag=mypicksshop0d-21"],["eBay","https://www.ebay.com"],["Walmart","https://www.walmart.com"],["Target","https://www.target.com"],
- ["Best Buy","https://www.bestbuy.com"],["Etsy","https://www.etsy.com"],["IKEA","https://www.ikea.com"],["Mercado Libre","https://www.mercadolibre.com"],
- ["Zalando","https://www.zalando.co.uk"],["ASOS","https://www.asos.com"],["Allegro","https://allegro.pl"],["noon","https://www.noon.com"],
- ["Jumia","https://www.jumia.com"],["AliExpress","https://www.aliexpress.com"],["Flipkart","https://www.flipkart.com"],["Rakuten","https://www.rakuten.co.jp"],
- ["Shopee","https://shopee.com"],["Lazada","https://www.lazada.com"],["Daraz","https://www.daraz.com"],["Coupang","https://www.coupang.com"]
+ ["Amazon.ae","https://www.amazon.ae/?tag=mypicksshop0d-21"]
 ];
 
 /* ----- Products -----
@@ -413,7 +409,7 @@ function detect(){
   for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(COUNTRIES[r]) return r}
   return "WW";
 }
-const priced=p=>p.offers.filter(o=>(o.country||DEFAULT_COUNTRY)===C||o.country==="*");
+const priced=p=>p.offers.filter(o=>/^Amazon\./i.test(String(o.store))&&((o.country||DEFAULT_COUNTRY)===C||o.country==="*"));
 const cur=o=>o.currency||DEFAULT_CURRENCY;
 const money=o=>cur(o)+" "+Number(o.price).toLocaleString("en-US",{maximumFractionDigits:2});
 const lowest=p=>{const a=priced(p).sort((x,y)=>x.price-y.price);return a[0]||null};
@@ -444,7 +440,7 @@ function showProduct(i){
   const covered=new Set(P.map(o=>String(o.store).toLowerCase()));
   const extra=COUNTRIES[C].s.filter(s=>![...covered].some(c=>s.name.toLowerCase().startsWith(c)||c.startsWith(s.name.toLowerCase())));
   $("dbody").innerHTML=`<div>${pic(p)}</div><div><h2>${esc(p.name)}</h2><div class="meta">${stars(p)}</div><p>${esc(p.desc)}</p>
-  <div class="meta">Stores for ${esc(COUNTRIES[C].n)}</div><div class="offers">`+
+  <div class="meta">Amazon links for ${esc(COUNTRIES[C].n)}</div><div class="offers">`+
   P.map((o,k)=>`<div class="offer"><div><b>${esc(o.store)}</b><div class="meta">${esc(o.note||'')}</div></div>
    <div style="text-align:right"><div class="p">${money(o)}</div>${k===0&&P.length>1?'<div class="best">Lowest price</div>':''}</div>
    <a class="buy" href="${esc(linkFor(p,o))}" target="_blank" rel="sponsored noopener noreferrer">Buy now</a></div>`).join('')+
