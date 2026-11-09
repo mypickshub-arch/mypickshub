@@ -68,7 +68,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);f
 .about{border-top:1px solid var(--line);padding:40px 0}.about h2{font-size:1.5rem;font-weight:800;margin-bottom:12px}.about p{max-width:68ch;color:var(--muted);margin:0 0 12px}
 .country{width:auto;max-width:220px;padding:10px 14px;font-size:16px}
 .badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;margin:18px 0 0;font-size:.9rem;color:var(--muted)}.badges li::before{content:"\2714";color:var(--good);font-weight:700;margin-right:6px}
-.trust{border-top:1px solid var(--line);padding:36px 0 8px}.trust h2{font-size:1.4rem;font-weight:800;margin-bottom:6px}.trust p{color:var(--muted);margin:0 0 14px}.storelist{display:flex;flex-wrap:wrap;gap:10px}.storelist a{border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:500;font-size:.92rem}.storelist a:hover{border-color:var(--accent)}
+.trust{border-top:1px solid var(--line);padding:36px 0 8px}.trust h2{font-size:1.4rem;font-weight:800;margin-bottom:6px}.trust p{color:var(--muted);margin:0 0 14px}.storelist{display:flex;flex-wrap:wrap;gap:10px}.storelist a{border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:600;font-size:1rem;min-height:48px;display:inline-flex;align-items:center;justify-content:center}.storelist a:hover{border-color:var(--accent)}
 .getapp{border-top:1px solid var(--line);padding:32px 0}.getapp .row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}.getapp h2{font-size:1.3rem;font-weight:800;margin:0}.getapp p{color:var(--muted);margin:4px 0 0;font-size:.95rem}
 .appbtns{display:flex;flex-wrap:wrap;gap:12px}.appbtn{display:flex;align-items:center;gap:10px;background:#000;color:#fff;border:1px solid #444;border-radius:10px;padding:8px 18px 8px 14px;cursor:pointer;font-family:inherit;text-align:left}
 .appbtn .ic{font-size:26px;line-height:1}.appbtn small{display:block;font-size:.68rem;opacity:.85;letter-spacing:.02em}.appbtn b{display:block;font-size:1.05rem;font-weight:600;line-height:1.15}
@@ -332,7 +332,8 @@ Object.values(COUNTRIES).forEach(country => {
 
 // Amazon store link shown on the home page
 const FEATURED = [
- ["Amazon.ae","https://www.amazon.ae/?tag=mypicksshop0d-21"]
+ ["Amazon-UAE","https://www.amazon.ae/?tag=mypicksshop0d-21"],
+ ["Amazon-INDIA","https://www.amazon.in/"]
 ];
 
 /* ----- Products -----
