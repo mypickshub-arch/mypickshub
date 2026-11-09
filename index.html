@@ -405,9 +405,9 @@ let C="WW", cat="All";
 
 // pick the visitor's country from their browser language, or from their saved choice
 function detect(){
-  try{const s=localStorage.getItem("mp_country"); if(s&&COUNTRIES[s]) return s}catch(e){}
-  for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(COUNTRIES[r]) return r}
-  return "WW";
+  try{const s=localStorage.getItem("mp_country"); if(s&&(s==="AE"||s==="IN")) return s}catch(e){}
+  for(const l of (navigator.languages||[navigator.language||""])){const r=(l.split("-")[1]||"").toUpperCase(); if(r==="AE"||r==="IN") return r}
+  return "AE";
 }
 const priced=p=>p.offers.filter(o=>/^Amazon\./i.test(String(o.store))&&((o.country||DEFAULT_COUNTRY)===C||o.country==="*"));
 const cur=o=>o.currency||DEFAULT_CURRENCY;
@@ -448,7 +448,7 @@ function showProduct(i){
    <a class="buy" href="${esc(s.fn(q(p)))}" target="_blank" rel="sponsored noopener noreferrer">View on ${esc(s.name)}</a></div>`).join('')+`</div></div>`;
   $("dlg").showModal();
 }
-$("country").innerHTML=Object.entries(COUNTRIES).sort((a,b)=>a[0]==="WW"?-1:b[0]==="WW"?1:a[1].n.localeCompare(b[1].n)).map(([k,v])=>`<option value="${k}">${esc(v.n)}</option>`).join('');
+$("country").innerHTML=["AE","IN"].map(k=>[k,COUNTRIES[k]]).map(([k,v])=>`<option value="${k}">${esc(v.n)}</option>`).join('');
 C=detect(); $("country").value=C;
 $("country").addEventListener("change",e=>{C=e.target.value;try{localStorage.setItem("mp_country",C)}catch(x){};draw()});
 $("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){cat=b.dataset.c;drawChips();draw()}});
