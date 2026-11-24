@@ -238,7 +238,7 @@ dialog:not([open]) + *{}
 /* ============ SETTINGS: edit these ============ */
 // Your affiliate IDs. Leave "" until you have them. Amazon needs one ID per country site.
 const AFF = {
-  amazon: { "ae":"mypicksshop0d-21" /* add other Amazon countries only after you join their Associates programs, e.g. "com":"yourtag-20", "co.uk":"yourtag-21" */ },
+  amazon: { "ae":"mypicksshop0d-21", "in":"mypickshubsto-21" },
   ebay: "",        // e.g. "mkcid=1&campid=YOURID"
   noon: "",        // e.g. "utm_source=yourid"
   aliexpress: "", flipkart: "", daraz: "", jumia: "", shopee: "", lazada: "", walmart: "",
@@ -332,8 +332,8 @@ Object.values(COUNTRIES).forEach(country => {
 
 // Amazon store link shown on the home page
 const FEATURED = [
- ["Amazon.ae","https://www.amazon.ae/?tag=mypicksshop0d-21"],
- ["Amazon.india","https://www.amazon.in/"]
+ ["Amazon-UAE","https://www.amazon.ae/?tag=mypicksshop0d-21"],
+ ["Amazon-INDIA","https://www.amazon.in/?tag=mypickshubsto-21"]
 ];
 
 /* ----- Products -----
