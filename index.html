@@ -29,7 +29,7 @@ h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-seri
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--line);background:var(--surface)}
 .bar{display:flex;align-items:center;gap:12px 16px;padding:14px 20px;flex-wrap:wrap}
-.logo{font:800 22px "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;white-space:nowrap}
+.logo{font:800 22px "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:inherit;cursor:pointer}
 .logo span{background:var(--tag);color:var(--tag-ink);padding:0 8px;border-radius:6px;margin-right:4px}
 .search{flex:1 1 280px}
 input[type=search],select{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);font:inherit}
@@ -134,7 +134,7 @@ dialog:not([open]) + *{}
 </head>
 <body>
 <header><div class="wrap bar">
-  <div class="logo"><span>My</span>Picks</div>
+  <a class="logo" href="./" aria-label="MyPicksHub home — refresh website" title="Click to refresh the website"><span>My</span>Picks</a>
   <div class="search"><input type="search" id="q" placeholder="Shop for anything" aria-label="Search products"></div>
   <select id="country" class="country" aria-label="Your country"></select>
 </div></header>
